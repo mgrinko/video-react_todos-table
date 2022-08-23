@@ -17,6 +17,8 @@ export const App = () => {
 
     <div className="section">
       <Routes>
+        <Route path="*" element={<p>Page not found</p>} />
+
         <Route path="/" element={
           <h1 className="title">Home Page</h1>
         } />
