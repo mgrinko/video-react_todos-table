@@ -1,6 +1,6 @@
 import { todos } from './data/todos';
 import { TodoTable } from './components/TodoTable';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 
 export const App = () => {
   return <>
@@ -17,11 +17,8 @@ export const App = () => {
 
     <div className="section">
       <Routes>
-        <Route path="*" element={<p>Page not found</p>} />
-
-        <Route path="/" element={
-          <h1 className="title">Home Page</h1>
-        } />
+        <Route path="/" element={<h1 className="title">Home Page</h1>} />
+        <Route path="home" element={<Navigate to="/" replace />} />
 
         <Route path="todos" element={<>
           <h1 className="title">Todos Page</h1>
@@ -31,6 +28,8 @@ export const App = () => {
             selectedTodoId={3}
           />
         </>} />
+
+        <Route path="*" element={<p>Page not found</p>} />
       </Routes>
     </div>
   </>;
