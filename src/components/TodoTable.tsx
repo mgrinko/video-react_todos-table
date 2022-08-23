@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Todo } from '../types';
 
 type Props = {
@@ -31,7 +32,6 @@ export const TodoTable: FC<Props> = ({ todos, selectedTodoId = 0 }) => {
           >
             <td className="is-vcentered has-text-weight-bold">{todo.id}</td>
             <td className="is-vcentered">{todo.title}</td>
-
             <td className="is-vcentered">
               {todo.completed ? (
                 <span className="icon has-text-success">
@@ -43,18 +43,20 @@ export const TodoTable: FC<Props> = ({ todos, selectedTodoId = 0 }) => {
                 </span>
               )}
             </td>
-
             <td>
-              <a className={classNames('button', {
-                'is-info': isSelected(todo),
-              })}>
+              <Link
+                to={`/todos/${todo.id}`}
+                className={classNames('button', {
+                  'is-info': isSelected(todo),
+                })}
+              >
                 <span className="icon">
                   <i className={classNames('fas', {
                     'fa-eye': !isSelected(todo),
                     'fa-eye-slash': isSelected(todo),
                   })} />
                 </span>
-              </a>
+              </Link>
             </td>
           </tr>
         ))}
